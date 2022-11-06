@@ -1,0 +1,62 @@
+names = ['John', 'Jack']
+
+while True:
+    try:
+        total_pencils = int(input('How many pencils would you like to use:'))
+        if total_pencils == 0:
+            print("The number of pencils should be positive")
+            continue
+    except ValueError:
+        print('The number of pencils should be numeric')
+        continue
+    
+    while True:
+        name = input('Who will be the first (John, Jack):')
+        if name in names:
+            break
+        else: 
+            print('Choose between John and Jack')
+            continue
+    
+    while True: 
+        print('|'*total_pencils)
+        print(name,"'s turn:")
+        if name == 'Jack':
+            if total_pencils % 4 == 0:
+                pencils = 3
+            elif total_pencils % 4 == 3:
+                pencils = 2
+            elif total_pencils % 4 == 2:
+                pencils =  1
+            elif total_pencils % 4 == 1:
+                pencils = 1
+            elif total_pencils < 2:
+                pencils = total_pencils
+            print(pencils)
+                   
+        else:
+                
+            try:
+                pencils = input()
+                if int(pencils) < 1 or int(pencils) > 3:
+                    print("Possible values: '1', '2' or '3'")
+                    continue
+            except ValueError: 
+                print("Possible values: '1', '2' or '3'")
+                continue
+                
+            if total_pencils < int(pencils):
+                print("Too many pencils were taken")
+                continue
+        total_pencils -= int(pencils)
+        if total_pencils == 0:
+            if name == "John":
+                print('Jack won!')
+            else: 
+                print("John won!")
+            break
+        
+        
+        name = 'John' if name == 'Jack' else 'Jack'
+    if total_pencils == 0:
+        break
